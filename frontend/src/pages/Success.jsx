@@ -1,22 +1,20 @@
 import { useEffect } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Success = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
+    const token = searchParams.get("token");
 
     if (token) {
-      console.log("Received token:", token);
       localStorage.setItem("token", token);
-      navigate("/dashboard");
-      console.log("Token stored in localStorage and navigating to dashboard...");
-    } else {
+      navigate("/dashboard", { replace: true });
+    } else if (!localStorage.getItem("token")) {
       alert("Token not present.");
     }
-      }, []);
+  }, [searchParams, navigate]);
 
   return (
     <div>
