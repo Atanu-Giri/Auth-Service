@@ -6,7 +6,6 @@ import Dashboard from './pages/Dashboard'
 
 function App() {
   return (
-    <div className="page-shell">
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
@@ -14,8 +13,6 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
-      </div>
-    
   )
 }
 

@@ -4,6 +4,7 @@ import cors from "cors";
 import express from "express";
 import passport from "passport";
 import mongoose from "mongoose";
+import CookieParser  from "cookie-parser";
 
 import "./config/passport.js";
 import authRoutes from "./routes/auth.js";
@@ -18,6 +19,7 @@ app.use(cors({
 ));
 
 app.use(express.json());
+app.use(CookieParser());
 app.use(passport.initialize());
 
 mongoose
