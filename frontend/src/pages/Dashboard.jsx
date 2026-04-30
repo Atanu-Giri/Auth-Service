@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [data, setData] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
 
     axios
       .get("http://localhost:5000/api/protected/dashboard", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+            withCredentials: true,
       })
       .then((res) => setData(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [navigate]);
 
   return (
     <div>
