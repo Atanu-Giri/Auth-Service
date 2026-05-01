@@ -35,4 +35,13 @@ router.get(
     }
   });
 
+router.post("/logout", (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: false, // Set to true in production with HTTPS
+    sameSite: "lax",
+  });
+  res.json({ message: "Logged out" });
+});
+
   export default router;
